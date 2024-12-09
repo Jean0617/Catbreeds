@@ -29,9 +29,10 @@ class _DetailCatState extends State<DetailCat>{
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height*0.4,
+                  height: MediaQuery.of(context).size.height*0.5,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                     child: Hero(
@@ -47,6 +48,10 @@ class _DetailCatState extends State<DetailCat>{
                       ),
                     ),
                   ),
+                ),
+
+                const Divider(
+                  color: Colors.black12,
                 ),
             
                 const SizedBox(height: 10),
@@ -71,45 +76,34 @@ class _DetailCatState extends State<DetailCat>{
   }
 
   card(CatModel cat){
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      color: Colors.white,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: createText('País',cat.origin,Icons.location_on_outlined)),
-            ],
-          ),
-                        
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: createText('Inteligencia','${cat.intelligence}',Icons.interests_outlined)),
-              Expanded(child: createText('Adaptabilidad','${cat.adaptability}',Icons.screen_rotation_alt_outlined)),
-            ],
-          ),
-                
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: createText('Temperamento',cat.temperament,Icons.screen_rotation_alt_outlined)),
-            ],
-          ),
-                  
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: createText('Descripción',cat.description,null)),
-            ],
-          ),
-            
-        ],
-      ),
+    return Column(
+      children: [
+
+        createItemsRow([
+          Expanded(child: createText('País',cat.origin,Icons.location_on_outlined)),
+        ]),
+
+        createItemsRow([
+          Expanded(child: createText('Inteligencia','${cat.intelligence}',Icons.interests_outlined)),
+          Expanded(child: createText('Adaptabilidad','${cat.adaptability}',Icons.screen_rotation_alt_outlined)),
+        ]),
+
+        createItemsRow([
+          Expanded(child: createText('Temperamento',cat.temperament,Icons.screen_rotation_alt_outlined)),
+        ]),
+
+        createItemsRow([
+          Expanded(child: createText('Descripción',cat.description,null)),
+        ]),
+          
+      ],
+    );
+  }
+
+  createItemsRow(List<Widget> listWidgets){
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: listWidgets
     );
   }
 

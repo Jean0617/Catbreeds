@@ -27,13 +27,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           List<CatModel> data = List.from(event.page == 1? [] : state.data);
           data.addAll(response['data']);
 
-          emit(state.copyWith(data: data, isLoading: false));
+          emit(state.copyWith(data: data, isLoading: false,isLoadingMore: false));
         }else{
-          emit(state.copyWith(data: [], isLoading: false));
+          emit(state.copyWith(data: [], isLoading: false,isLoadingMore: false));
         }
        
     } catch (e) {
-      emit(state.copyWith(data: [], isLoading: false));
+      emit(state.copyWith(data: [], isLoading: false,isLoadingMore: false));
     }
   }
 
@@ -47,19 +47,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
         if (response['status'] == 200) {
 
-          emit(state.copyWith(data: response['data'], isLoading: false));
+          emit(state.copyWith(data: response['data'], isLoading: false,isLoadingMore: false));
 
         }else{
-          emit(state.copyWith(data: [], isLoading: false));
+          emit(state.copyWith(data: [], isLoading: false,isLoadingMore: false));
         }
        
     } catch (e) {
-      emit(state.copyWith(data: [], isLoading: false));
+      emit(state.copyWith(data: [], isLoading: false,isLoadingMore: false));
     }
   }
 
   Future<void> _onChangePage(ChangePageEvent event,Emitter<HomeState> emit) async {
-    emit(state.copyWith(page: event.page));
+    emit(state.copyWith(page: event.page,isLoadingMore: true));
   }
   
 }

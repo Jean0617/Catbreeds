@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:catbreeds/screens/splash.dart';
+import 'package:catbreeds/screens/home_screen.dart';
 
 class AppRoutes {
 
@@ -9,7 +9,7 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> buildRoutes(){
     return {
-      home: (_) => const SplashScreen()
+      home: (_) => const HomeScreen()
     };
   }
 

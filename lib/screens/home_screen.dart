@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen>{
       
                     },
                     onPressed: (){
+                      FocusScope.of(context).requestFocus(FocusNode());
                       if (buscarC.text.isEmpty) {
                         context.read<HomeBloc>().add((SearchCatsEvent('',1)));
                       }else{
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen>{
                   Column(
                     children: [
                       card(state.data[i]),
-                      state.isLoading?
+                      state.isLoadingMore?
                         const Padding(
                           padding: EdgeInsets.all(10.0),
                           child: TextP(title: 'Cargando...',color: Color.fromARGB(234, 39, 31, 31)),

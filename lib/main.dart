@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  runApp(const CatbreedsApp());
+
+  Future.delayed(const Duration(seconds: 2), () {
+    runApp(const CatbreedsApp());
+  });
+
 }
 
 class CatbreedsApp extends StatelessWidget {
